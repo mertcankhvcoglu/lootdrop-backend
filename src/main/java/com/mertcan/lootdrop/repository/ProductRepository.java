@@ -18,5 +18,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // Mülakat Notu: "Containing" -> SQL'deki LIKE %name% karşılığıdır.
     // "IgnoreCase" -> Büyük/küçük harf duyarlılığını ortadan kaldırır (Case-insensitive).
-     Page<Product> findByProductNameContainingIgnoreCase(String productName, Pageable pageable);
+     Page<Product> findByNameContainingIgnoreCase(String productName, Pageable pageable);
 }

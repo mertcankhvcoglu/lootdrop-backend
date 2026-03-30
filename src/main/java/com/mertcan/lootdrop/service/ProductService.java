@@ -33,7 +33,7 @@ public class ProductService {
     public Page<Product> searchProductsByName(String name, int size) {
         // sadece ilk sayfa ve istenen sayıdaki (size) ürünü getir.
         Pageable pageable = PageRequest.of(0, size);
-        return productRepository.findByProductNameContainingIgnoreCase(name, pageable);
+        return productRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 
 
