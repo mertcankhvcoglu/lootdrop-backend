@@ -36,4 +36,16 @@ public class ProductController {
         Product product = productService.getProductById(id);
         return ResponseEntity.ok(product);
     }
+
+    public ResponseEntity<Page<Product>> searchProducts(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "size", defaultValue = "5") int size
+    ) {
+        // Profesyonel Yaklaşım: Veri boş gelse bile 200 OK dönmek,
+        // ancak içeriği boş dizi göndermek frontend'in hata almasını engeller.
+        Page<Product> results = productService.searchProductsByName(name, size);
+        return ResponseEntity.ok(results);
+    }
+
+
 }

@@ -4,6 +4,7 @@ import com.mertcan.lootdrop.entity.Product;
 import com.mertcan.lootdrop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,12 @@ public class ProductService {
     public Product getProductById(Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ürün bulunamadı!"));
+    }
+
+    public Page<Product> searchProductsByName(String name, int size) {
+        // sadece ilk sayfa ve istenen sayıdaki (size) ürünü getir.
+        Pageable pageable = PageRequest.of(0, size);
+        return productRepository.findByProductNameContainingIgnoreCase(name, pageable);
     }
 
 

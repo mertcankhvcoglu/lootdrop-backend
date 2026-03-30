@@ -15,4 +15,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // çÇOĞUL KATEGORİ SEÇİMİ METODU:
     // SQL----> SELECT * FROM products WHERE category_name IN ('A', 'B')
      Page<Product> findByCategoryNameIn(List<String> categories, Pageable pageable);
+
+    // Mülakat Notu: "Containing" -> SQL'deki LIKE %name% karşılığıdır.
+    // "IgnoreCase" -> Büyük/küçük harf duyarlılığını ortadan kaldırır (Case-insensitive).
+     Page<Product> findByProductNameContainingIgnoreCase(String productName, Pageable pageable);
 }
