@@ -37,6 +37,7 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @GetMapping("/search")
     public ResponseEntity<Page<Product>> searchProducts(
             @RequestParam(name = "name") String name,
             @RequestParam(name = "size", defaultValue = "5") int size
